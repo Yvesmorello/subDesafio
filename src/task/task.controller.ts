@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, NotFoundException, UseGuards } from '@nestjs/common';
 import { TasksService } from './task.service';
 import { Task } from './entity/task.entity';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 //@UseGuards(JwtAuthGuard)
 @Controller('tasks')
