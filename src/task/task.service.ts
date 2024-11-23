@@ -10,18 +10,17 @@ export class TasksService {
     private readonly taskRepository: Repository<Task>,
   ) {}
 
-  // Criar uma tarefa
+  
   async create(name: string, description: string, dueDate: Date, assignedTo: string): Promise<Task> {
     const task = this.taskRepository.create({ name, description, dueDate, assignedTo });
     return this.taskRepository.save(task);
   }
 
-  // Listar todas as tarefas
+
   findAll(): Promise<Task[]> {
     return this.taskRepository.find();
   }
 
-  // Encontrar uma tarefa por ID
   async findOne(id: number): Promise<Task> {
     const task = await this.taskRepository.findOne({ where: { id } });
     if (!task) {
@@ -30,7 +29,6 @@ export class TasksService {
     return task;
   }
 
-  // Atualizar uma tarefa
   async update(id: number, name?: string, description?: string, dueDate?: Date, status?: string, assignedTo?: string): Promise<Task> {
     const task = await this.findOne(id);
     if (name) task.name = name;
@@ -41,7 +39,6 @@ export class TasksService {
     return this.taskRepository.save(task);
   }
 
-  // Remover uma tarefa
   async remove(id: number): Promise<void> {
     const task = await this.findOne(id);
     await this.taskRepository.remove(task);

@@ -5,10 +5,19 @@ import { TasksModule } from './task/task.module';
 import { User } from './users/entity/user.entity';
 import { Task } from './task/entity/task.entity';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { RolesGuard } from './auth/guards/role-guards';
+import { CacheModule } from '@nestjs/cache-manager';
 
 
 @Module({
   imports: [
+    CacheModule.register({
+      ttl: 60,
+      max: 100,
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost', 
@@ -21,6 +30,9 @@ import { AuthModule } from './auth/auth.module';
     }),
     TasksModule, UsersModule, AuthModule,
   ],
+  providers: [
+    { provide: APP_GUARD, useClass: JwtAuthGuard}, 
+    { provide: APP_GUARD, useClass: RolesGuard}]
 })
 export class AppModule {}
  

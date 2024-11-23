@@ -35,7 +35,6 @@ export class UsersService {
     const user = await this.findOne(id);
     if (username) user.username = username;
     if (password) user.password = await bcrypt.hash(password, 10);
-    if (role) user.role = role;
     return this.userRepository.save(user);
   }
 

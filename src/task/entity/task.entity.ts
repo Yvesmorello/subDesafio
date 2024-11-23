@@ -18,5 +18,5 @@ export class Task {
   status: string;
 
   @Column()
-  assignedTo: string; // Pode ser um ID de usuário ou nome do responsável
+  assignedTo: string; 
 }
