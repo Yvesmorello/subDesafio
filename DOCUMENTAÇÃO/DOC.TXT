@@ -1,0 +1,23 @@
+esta api possui as funcionalidades de CRUD de um usuario e CRUD de uma task criado pelo usuario, o programa possui dois tipos de usuario os "User" que são comuns e os "Admin" 
+que são administradores, possuem possibilidades diferentes no programa
+
+- primeiramente cria o usuario na rota POST http://localhost:3000/users - com username, password e role
+- realiza o login na rota POST http://localhost:3000/login - com username e password
+- CASO SEJA ADMIN pode listar os usuarios na rota GET http://localhost:3000/users
+- todos podem atualizar seu usuario na rota PUT http://localhost:3000/users/{id} - possivel atualizar somente username e password
+- todos podem deletar seu usuario na rota DELETE http://localhost:3000/users/{id}
+
+PARA CRIAR TASKS 
+
+- todos podem criar uma task na rota POST http://localhost:3000/tasks
+- CASO SEJA ADMIN pode listar as tasks na rota GET http://localhost:3000/tasks
+- todos podem atualizar suas tasks criadas na rota PUT http://localhost:3000/tasks/{id}
+- todos podem deletar suas tasks na rota DELETE http://localhost:3000/tasks/{id}
+
+
+
+TODAS AS ROTAS EXCETO CRIAR USUARIO E LOGIN, PRECISAM DA UTLIZAÇÃO DO TOKEN DE AUTENTICAÇÃO (BEARER TOKEN) PARA SEREM UTILIZADAS,
+SOMENTE "ADMIN" PODE LISTAR TODOS OS USUARIOS E TODAS AS TASKS
+
+A ROTA DE LISTAR TASKS POSSUI UM CACHE PARA ARMAZENAMENTO TEMPORARIO PARA EVITAR PROCESSAMENTO REPETITIVO
+
