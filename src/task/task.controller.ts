@@ -8,7 +8,6 @@ import { CacheInterceptor } from '@nestjs/cache-manager';
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
-  @UseInterceptors(CacheInterceptor)
   @Roles('admin', 'user')
   @Post()
   async create(@Body() body: { name: string; description: string; dueDate: Date; assignedTo: string }): Promise<Task> {
@@ -16,7 +15,7 @@ export class TasksController {
     return this.tasksService.create(name, description, dueDate, assignedTo);
   }
 
-  
+  @UseInterceptors(CacheInterceptor)
   @Get()
   findAll(): Promise<Task[]> {
     return this.tasksService.findAll();
